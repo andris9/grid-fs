@@ -38,7 +38,7 @@ gridFs.listFile(filename, callback)
 
 Where
 
-  * **filename** is the file to list
+  * **filename** is the name of the file to list
   * **callback** is the function to run with arguments (err, info). Info object contains the following properties
     * *filename*
     * *contentType*
@@ -59,6 +59,32 @@ gridFs.listFile('test.txt', function(err, info){
 });
 ```
 
+## List all files
+
+List all files in the collection
+
+```javascript
+gridFs.list(callback)
+```
+
+Where
+
+  * **callback** is the function to run when file list is fetched, uses arguments (err, list) where list is an array of file names
+
+**Example**
+
+```javascript
+gridFs.list(function(err, list){
+    if(err){
+        console.log(err);
+    }else{
+        list.forEach(function(filename){
+            console.log(filename);
+        });
+    }
+});
+```
+
 ## Write files to GridFs
 
 Create Writable stream
@@ -69,7 +95,7 @@ var stream = gridFs.createWriteStream(filename[, options]);
 
 Where
 
-  * **filename** is the file name to use
+  * **filename** is the name of file to write to (overwrites existing file if present)
   * **options** is the optional options object (`metadata` object propery is probably most important)
 
 Listen for the `'close'` event to find out when the file has been stored to the GridFs
@@ -94,7 +120,7 @@ var stream = gridFs.createReadStream(filename);
 
 Where
 
-  * **filename** is the file name to use
+  * **filename** is the name of the file to read from
 
 **Example**
 
@@ -108,12 +134,12 @@ stream.pipe(process.stdout);
 Unlink a file with
 
 ```javascript
-gridFs.createWriteStream(filename, callback);
+gridFs.unlink(filename, callback);
 ```
 
 Where
 
-  * **filename** is the file to unlink
+  * **filename** is the name of the file to unlink
   * **callback** is the function to run once the file is deleted
 
 **Example**
