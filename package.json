@@ -1,0 +1,30 @@
+{
+  "name": "grid-fs",
+  "version": "0.1.0",
+  "description": "Convenience wrappers around GridFS",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/andris9/grid-fs.git"
+  },
+  "scripts": {
+    "test": "grunt"
+  },
+  "keywords": [
+    "Mongodb",
+    "Gridfs"
+  ],
+  "author": "Andris Reinman",
+  "license": "MIT",
+  "dependencies": {
+    "mime": "^1.2.11",
+    "mongodb": "^1.4.8"
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-mocha-test": "^0.11.0",
+    "sinon": "^1.10.3"
+  }
+}
