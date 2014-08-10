@@ -1,8 +1,8 @@
 {
   "name": "grid-fs",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Convenience wrappers around GridFS",
-  "main": "index.js",
+  "main": "src/grid-fs.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/andris9/grid-fs.git"
