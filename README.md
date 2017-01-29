@@ -2,6 +2,8 @@
 
 Convenience wrappers around [MongoDB GridFS](https://github.com/mongodb/node-mongodb-native/blob/master/docs/gridfs.md) methods.
 
+> **v1.0.0+** requires at least Node.js v6
+
 ## Installation
 
     npm install grid-fs --save
@@ -11,8 +13,8 @@ Convenience wrappers around [MongoDB GridFS](https://github.com/mongodb/node-mon
 Require GridFs constructor and create a gridFs instance
 
 ```javascript
-var GridFs = require('grid-fs');
-var gridFs = new GridFs(db[, collectionName]);
+const GridFs = require('grid-fs');
+const gridFs = new GridFs(db[, collectionName]);
 ```
 
 Where
@@ -23,10 +25,10 @@ Where
 **Example**
 
 ```javascript
-var MongoClient = require('mongodb').MongoClient;
-var GridFs = require('grid-fs');
+const MongoClient = require('mongodb').MongoClient;
+const GridFs = require('grid-fs');
 MongoClient.connect('mongodb://127.0.0.1:27017/db', function(err, db) {
-    var gridFs = new GridFs(db);
+    let gridFs = new GridFs(db);
 });
 ```
 
@@ -50,7 +52,7 @@ Where
 **Example**
 
 ```javascript
-gridFs.listFile('test.txt', function(err, info){
+gridFs.listFile('test.txt', (err, info) => {
     if(err){
         console.log('Error or file not found');
     }else{
@@ -74,11 +76,11 @@ Where
 **Example**
 
 ```javascript
-gridFs.list(function(err, list){
+gridFs.list((err, list) => {
     if(err){
         console.log(err);
     }else{
-        list.forEach(function(filename){
+        list.forEach(filename => {
             console.log(filename);
         });
     }
@@ -90,22 +92,26 @@ gridFs.list(function(err, list){
 Create Writable stream
 
 ```javascript
-var stream = gridFs.createWriteStream(filename[, options]);
+let stream = gridFs.createWriteStream(filename[, options]);
 ```
 
 Where
 
   * **filename** is the name of file to write to (overwrites existing file if present)
-  * **options** is the optional options object (`metadata` object propery is probably most important)
+  * **options** is the optional options object (`metadata` object property is probably most important)
 
 Listen for the `'close'` event to find out when the file has been stored to the GridFs
 
 **Example**
 
 ```javascript
-var stream = gridFs.createWriteStream('test.txt', {metadata: {author: 'Andris'}});
+let stream = gridFs.createWriteStream('test.txt', {
+    metadata: {
+        author: 'Andris'
+    }
+});
 stream.end('text.txt');
-stream.on('close', function(){
+stream.on('close', () => {
     console.log('File stored and closed');
 });
 ```
@@ -115,7 +121,7 @@ stream.on('close', function(){
 Create Readable stream
 
 ```javascript
-var stream = gridFs.createReadStream(filename);
+let stream = gridFs.createReadStream(filename);
 ```
 
 Where
@@ -125,7 +131,7 @@ Where
 **Example**
 
 ```javascript
-var stream = gridFs.createReadStream('test.txt');
+let stream = gridFs.createReadStream('test.txt');
 stream.pipe(process.stdout);
 ```
 
@@ -145,7 +151,7 @@ Where
 **Example**
 
 ```javascript
-gridFs.unlink('test.txt', function(err){
+gridFs.unlink('test.txt', err => {
     if(err){
         console.log('Unlink failed');
     }
