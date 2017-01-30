@@ -1,6 +1,6 @@
 {
   "name": "grid-fs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Convenience wrappers around GridFS",
   "main": "lib/grid-fs.js",
   "repository": {
